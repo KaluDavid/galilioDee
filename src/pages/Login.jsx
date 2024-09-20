@@ -5,13 +5,29 @@ import twitter from "/twitter.svg"
 import { Link } from 'react-router-dom'
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
+import { validation } from '../utils/Validation'
+import { auth, googleAuth, twitterAuth } from '../../firebase/config'
+import { signInWithPopup } from 'firebase/auth'
+import toast from 'react-hot-toast'
 
 export const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' })
     const [showPwd, setShowPwd] = useState(false)
+    const [errors, setErrors] = useState({})
 
     function handleData(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (validation(formData.email, formData.password, setErrors)) {
+            toast.success("Login Successful");
+        } else {
+            toast.error('Not Successful')
+        }
     }
     return (
         <>
@@ -28,26 +44,30 @@ export const Login = () => {
 
                         </div>
 
-                        <form action="" className='flex gap-6 px-4 flex-col mt-2'>
+                        <form onSubmit={handleSubmit} className='flex gap-6 px-4 flex-col mt-2'>
                             <div className='flex flex-col items-start text-left justify-start gap-2'>
                                 <label htmlFor="email" className='text-[#000000] font-medium text-base'>Email*</label>
-                                <input type="email" id='email' name='email' placeholder='Enter your email' className='py-[11px] px-3 rounded-lg border border-[#D9D8DD] placeholder:text-[#AFAFAF] placeholder:font-medium w-full outline-[#AFAFAF]' value={formData.email} onChange={handleData} />
+                                <input type="email" id='email' name='email' placeholder='Enter your email' className={`py-[11px] px-3 rounded-lg border ${errors.email ? 'border-[#F84D4D] outline-[#F84D4D]' : 'border-[#D9D8DD]'} placeholder:text-[hsl(0,0%,69%)] placeholder:font-medium w-full outline-[#AFAFAF]`} value={formData.email} onChange={handleData} />
+                                {errors.email && <p className='text-[#F84D4D] font-medium text-sm'>{errors.email}</p>
+                                }
                             </div>
                             <div className='flex flex-col items-start text-left justify-start gap-2'>
                                 <label htmlFor="password" className='text-[#000000] font-medium text-base'>Password*</label>
-                                <div className='flex w-full items-center'><input type={showPwd ? "text" : "password"} id='password' name='password' placeholder='Enter your password' className='py-[11px] px-3 rounded-lg border border-[#D9D8DD] placeholder:text-[#AFAFAF] placeholder:font-medium w-full outline-[#AFAFAF]' value={formData.password} onChange={handleData} />
+                                <div className='flex w-full items-center'><input type={showPwd ? "text" : "password"} id='password' name='password' placeholder='Enter your password' className={`py-[11px] px-3 rounded-lg border ${errors.password ? 'border-[#F84D4D] outline-[#F84D4D]' : 'border-[#D9D8DD]'} placeholder:text-[hsl(0,0%,69%)] placeholder:font-medium w-full outline-[#AFAFAF]`} value={formData.password} onChange={handleData} />
                                     <p className='ml-[-9%] *:text-base *:cursor-pointer *:font-extralight bg-white py-2 px-1' onClick={() => setShowPwd(!showPwd)}>{showPwd ? <FiEyeOff /> : <FiEye />}</p>
                                 </div>
+                                {errors.password && <p className='text-[#F84D4D] font-medium text-sm'>{errors.password}</p>
+                                }
                             </div>
                             <div className='flex flex-col items-center w-full gap-4'>
-                                <button className='w-full py-4 rounded-lg flex items-center gap-2 justify-center text-[#FFFFFF] font-[500] leading-[18px] bg-[#6172F3]'> Login</button>
+                                <button type='submit' className='w-full py-4 rounded-lg flex items-center gap-2 justify-center text-[#FFFFFF] font-[500] leading-[18px] bg-[#6172F3]'> Login</button>
                                 <p className='text-[#000000] font-medium text-base text-center *:text-[#6172F3]'>Don't have an account? <Link to="/"><span>sign up</span></Link></p>
                             </div>
                         </form>
                     </div>
 
-                </div>
-            </main>
+                </div >
+            </main >
         </>
     )
 } 

@@ -1,0 +1,16 @@
+  <!-- <svg className="animate-spin h-[38px] w-[38px] text-changeColor" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+</svg>  -->
+
+<svg width="20" height="20" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8.5C16 12.9183 12.4183 16.5 8 16.5C3.58172 16.5 0 12.9183 0 8.5C0 4.08172 3.58172 0.5 8 0.5C12.4183 0.5 16 4.08172 16 8.5ZM2.24 8.5C2.24 11.6812 4.81884 14.26 8 14.26C11.1812 14.26 13.76 11.6812 13.76 8.5C13.76 5.31884 11.1812 2.74 8 2.74C4.81884 2.74 2.24 5.31884 2.24 8.5Z" fill="#C7A9F2" />
+              <path d="M16 8.5C16 6.57992 15.3094 4.72389 14.0544 3.27078C12.7993 1.81767 11.0635 0.864434 9.16381 0.585107L8.83795 2.80128C10.2057 3.00239 11.4555 3.68872 12.3591 4.73496C13.2628 5.7812 13.76 7.11754 13.76 8.5H16Z" fill="#FAF6FE" />
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                from="0 0 0"
+                to="360 0 0"
+                dur="1s"
+                repeatCount="indefinite" />
+            </svg>  
