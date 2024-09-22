@@ -4,7 +4,7 @@ export const loginVal = (email, password, setErrors) => {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!password || password < 6) {
+  if (!password || password.length < 6) {
     newError.password = "Password must not be less than 6";
     isValid = false;
   }

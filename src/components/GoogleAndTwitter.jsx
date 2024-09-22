@@ -6,15 +6,16 @@ import twitter from "/twitter.svg";
 import toast from 'react-hot-toast';
 
 
-export function GoogleAndTwitter() {
+export function GoogleAndTwitter({ navigate }) {
 
     //SIgnUp with google
     const googleSignIn = async () => {
         try {
             const user = await signInWithPopup(auth, googleAuth);
             toast.success('Hurrayyy🎉 Google sign-up successful! ')
-
             console.log(user)
+            return (navigate("/home"))
+
         } catch (error) {
             toast.error("Ooops😔 an error occurred")
             console.log(error.message)

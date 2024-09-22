@@ -8,8 +8,9 @@ import { LabelsAndInputs } from '../components/LabelsAndInputs';
 import { Password } from '../components/Password';
 import { Body } from '../components/Body';
 
-export const Login = ({ loading, setLoading, errors, setErrors }) => {
+export const Login = ({ loading, setLoading, errors, setErrors, navigate }) => {
     const [formData, setFormData] = useState({ email: '', password: '' })
+
 
     function handleData(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -28,6 +29,7 @@ export const Login = ({ loading, setLoading, errors, setErrors }) => {
                 if (user) {
                     console.log(user);
                 }
+                return (navigate("/home"))
             } else {
                 return;
             }
@@ -55,7 +57,7 @@ export const Login = ({ loading, setLoading, errors, setErrors }) => {
 
                 <Password errors={errors.password} value={formData.password} onChange={handleData} />
 
-                <Button loading={loading} btnText="Login" linkTo="/" text="Don't have an account?" span="sign up" />
+                <Button loading={loading} btnText="Login" home="home" linkTo="/" text="Don't have an account?" span="sign up" />
 
 
             </Body>
